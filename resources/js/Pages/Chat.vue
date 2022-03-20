@@ -13,31 +13,14 @@
                    <!-- list USers -->
                    <div class="w-3/12 bg-gray-200 bg-opacity-25 border-r border-gray-200 overflow-y-scroll">
                         <ul>
-                            <li class="p-6 text-lg text-gray-600 leading-7 fond-semibold border-b border-gray-200 hover:bg-gray-200 hover:bg-opacity-50 hover:cursor-pointer">
+                            <li
+                                v-for="user in users" :key="user.id"
+                                class="p-6 text-lg text-gray-600 leading-7 fond-semibold border-b border-gray-200 hover:bg-gray-200 hover:bg-opacity-50 hover:cursor-pointer">
                                 <p class="flex items-center">
-                                        Sirlei
+                                        {{user.name}}
                                         <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full" ></span>
                                     </p>
                             </li>
-                            <li class="p-6 text-lg text-gray-600 leading-7 fond-semibold border-b border-gray-200 hover:bg-gray-200 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                        Manolo da Rua
-                                        <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full" ></span>
-                                    </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-600 leading-7 fond-semibold border-b border-gray-200 hover:bg-gray-200 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                        Gustavo Web
-                                        <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full" ></span>
-                                    </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-600 leading-7 fond-semibold border-b border-gray-200 hover:bg-gray-200 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                        Gustavo Web
-                                        <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full" ></span>
-                                    </p>
-                            </li>
-
                         </ul>
                    </div>
                    <!-- box Messagem -->
@@ -83,14 +66,15 @@
         components: {
             AppLayout,
         },
+        data() {
+            return {
+                users: []
+            }
+        },
+        mounted() {
+            axios.get('api/users').then(response =>{
+                this.users = response.data.users
+            })
+        },
     })
 </script>
-<style>
-    .messageFromMe {
-        @apply bg-indigo-300 bg-opacity-25;
-    }
-
-    .messageToMe{
-        @apply bg-gray-300 bg-opacity-25;
-    }
-</style>
