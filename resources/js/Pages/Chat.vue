@@ -60,6 +60,7 @@
 <script>
     import { defineComponent } from 'vue'
     import AppLayout from '@/Layouts/AppLayout.vue'
+    import store from '../store'
 
 
     export default defineComponent({
@@ -76,6 +77,11 @@
         },
         props: {
             auth: Object,
+        },
+        computed: {
+            user(){
+                return store.state.user
+            }
         },
         methods: {
             scrollToBottom: function (){
@@ -100,7 +106,7 @@
                     'to' : this.userActive.id,
                 }).then(response => {
                     this.messages.push({
-                        'from': '1',
+                        'from': this.user.id,
                         'to': this.userActive.id,
                         'content': this.message,
                         'data_message':  new Date().toISOString(),
@@ -113,6 +119,8 @@
 
         },
         mounted() {
+
+            console.log(this.user)
             axios.get('api/users').then(response =>{
                 this.users = response.data.users
             })

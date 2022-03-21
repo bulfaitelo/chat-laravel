@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
 
+    public function me() {
+        $userLogged = Auth::user();
+        return response()->json([
+            'user'=> $userLogged,
+        ], Response::HTTP_OK);
+    }
 
     public function index()
     {

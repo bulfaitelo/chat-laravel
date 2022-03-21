@@ -5,7 +5,7 @@ import Vue from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import moment from 'moment';
-
+import store from './store'
 
 moment.locale("pt-br");
 
@@ -14,6 +14,8 @@ moment.locale("pt-br");
 //         return moment(value).format('DD/MM/YYYY HH:mm:ss')
 //     }
 // });
+
+store.dispatch('userStateAction')
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
