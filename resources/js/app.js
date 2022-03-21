@@ -1,8 +1,19 @@
 require('./bootstrap');
 
 import { createApp, h } from 'vue';
+import Vue from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import moment from 'moment';
+
+
+moment.locale("pt-br");
+
+// Vue.filter('formatDate', function (value) {
+//     if(value){
+//         return moment(value).format('DD/MM/YYYY HH:mm:ss')
+//     }
+// });
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 

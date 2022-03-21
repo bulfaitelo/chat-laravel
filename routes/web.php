@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\PageController;
+use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,5 +27,5 @@ Route::get('/chat', [PageController::class, 'chat'])->name('chat');
 });
 
 Route::get('test', function (){
-    dd(Auth::id());
+    dd(Message::first()->data_message);
 });
