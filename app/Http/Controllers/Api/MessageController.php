@@ -68,6 +68,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $message = new Message();
         $message->from = Auth::id();
         $message->to = $request->to;
